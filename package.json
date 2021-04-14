@@ -1,0 +1,78 @@
+{
+	"name": "vlitejs",
+	"version": "4.0.0",
+	"description": "vLitejs is a fast and lightweight Javascript library to customize and skin video and audio player with a minimalist theme (HTML5, Youtube, Vimeo)",
+	"keywords": [
+		"html5",
+		"youtube",
+		"vimeo",
+		"video",
+		"audio",
+		"player",
+		"youtube api",
+		"vimeo api"
+	],
+	"homepage": "https://yoriiis.github.io/vlitejs",
+	"bugs": "https://github.com/yoriiis/vlitejs/issues",
+	"repository": "https://github.com/yoriiis/vlitejs.git",
+	"license": "MIT",
+	"author": "Yoriiis aka Joris DANIEL",
+	"files": [
+		"dist",
+		"!dist/**/*.map",
+		"!dist/demo",
+		"!dist/examples"
+	],
+	"main": "dist/vlite.js",
+	"scripts": {
+		"build": "rm -rf ./dist/ && webpack --mode=production",
+		"create:demo": "mkdir demo",
+		"start": "rm -rf ./dist/ && webpack --mode=development",
+		"test:eslint": "eslint ./src --ignore-pattern dist",
+		"test:eslint:fix": "eslint ./src --ignore-pattern dist --fix",
+		"test:stylelint": "stylelint './src/**/*.css' './docs/theme/assets/stylesheets/**/*.css' --config ./stylelint.config.js",
+		"test:stylelint:fix": "stylelint './src/**/*.css' './docs/theme/assets/stylesheets/**/*.css' --config ./stylelint.config.js --fix"
+	},
+	"dependencies": {
+		"validate-target": "^2.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.13.15",
+		"@babel/plugin-proposal-class-properties": "^7.12.13",
+		"@babel/preset-env": "^7.13.15",
+		"babel-eslint": "^10.0.3",
+		"babel-loader": "^8.0.6",
+		"css-loader": "^5.2.1",
+		"css-minimizer-webpack-plugin": "^2.0.0",
+		"eslint": "^7.24.0",
+		"eslint-config-standard": "^16.0.2",
+		"eslint-plugin-import": "^2.19.1",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-prettier": "^3.3.1",
+		"eslint-plugin-promise": "^5.1.0",
+		"eslint-plugin-standard": "^5.0.0",
+		"html-webpack-inline-svg-plugin": "^2.3.0",
+		"html-webpack-plugin": "^5.3.1",
+		"mini-css-extract-plugin": "^1.4.1",
+		"postcss": "^8.2.10",
+		"postcss-custom-media": "^8.0.0",
+		"postcss-import": "^14.0.0",
+		"postcss-loader": "^5.2.0",
+		"postcss-nested": "^5.0.5",
+		"postcss-preset-env": "^6.7.0",
+		"postcss-url": "^10.1.1",
+		"prettier": "^2.2.1",
+		"style-loader": "^2.0.0",
+		"stylelint": "^13.12.0",
+		"stylelint-config-standard": "^21.0.0",
+		"stylelint-prettier": "^1.2.0",
+		"terser-webpack-plugin": "^5.1.1",
+		"ts-loader": "^8.0.18",
+		"webpack": "^5.32.0",
+		"webpack-cli": "^4.5.0",
+		"webpack-manifest-plugin": "^3.1.0"
+	},
+	"engines": {
+		"node": ">=12.14.0"
+	}
+}

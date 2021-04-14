@@ -1,0 +1,82 @@
+name: Build
+
+on:
+  push:
+    branches:
+    pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.14.0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test ESLint
+        run: npm run test:eslint
+
+      - name: Test Stylelint
+        run: npm run test:stylelint
+
+      - name: Build
+        run: npm run build
+
+      - name: Create demo
+        run: npm run create:demo
+
+      - name: Upload GitHub Pages artifacts
+        uses: actions/upload-artifact@v1
+        if: github.ref == 'refs/heads/dev-gh-pages' &&
+            github.repository == 'yoriiis/vlitejs' &&
+            github.event_name != 'pull_request'
+        with:
+          name: gh-pages
+          path: dist
+
+  # deploy-gh-pages:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
+  #   needs: build
+  #   if: success() &&
+  #       github.ref == 'refs/heads/dev-gh-pages' &&
+  #       github.repository == 'yoriiis/vlitejs' &&
+  #       github.event_name != 'pull_request'
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Download GitHub Pages artifacts
+  #       uses: actions/download-artifact@v1
+  #       with:
+  #         name: gh-pages
+  #         # The path is mandatory with actions/download-artifact@v2
+  #         # https://github.com/actions/download-artifact#compatibility-between-v1-and-v2
+  #         path: dist
+
+  #     - name: Deploy to Github Pages
+  #       uses: crazy-max/ghaction-github-pages@v1
+  #       with:
+  #         target_branch: gh-pages
+  #         build_dir: dist
+  #         keep_history: true
+  #         commit_message: "Deploy to GitHub pages"
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

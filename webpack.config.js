@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -36,7 +37,10 @@ module.exports = (env, argv) => {
 				},
 				{
 					test: /\.css$/,
-					include: [path.resolve(__dirname, './src')],
+					include: [
+						path.resolve(__dirname, './src'),
+						fs.realpathSync(path.join(__dirname, '/node_modules/vlitejs')) // Useful for npm link compatibility
+					],
 					use: [
 						MiniCssExtractPlugin.loader,
 						{
@@ -57,7 +61,7 @@ module.exports = (env, argv) => {
 		resolve: {
 			extensions: ['.js', '.css'],
 			alias: {
-				shared: path.resolve(__dirname, '../src/shared')
+				shared: path.resolve(__dirname, './src/shared')
 			}
 		},
 		plugins: [
@@ -71,7 +75,9 @@ module.exports = (env, argv) => {
 				template: path.resolve(__dirname, './src/demo/views/demo.html'),
 				publicPath: ''
 			}),
-			new HtmlWebpackInlineSVGPlugin(),
+			new HtmlWebpackInlineSVGPlugin({
+				allowFromUrl: true
+			}),
 			new webpack.optimize.ModuleConcatenationPlugin()
 		],
 		stats: {

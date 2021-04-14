@@ -37,17 +37,18 @@ jobs:
       - name: Test Stylelint
         run: npm run test:stylelint
 
-      - name: Build
-        run: npm run build
+      # TODO: uncomment when vlitejs@4 is available on npm
+      # - name: Build
+      #   run: npm run build
 
-      - name: Upload GitHub Pages artifacts
-        uses: actions/upload-artifact@v1
-        if: github.ref == 'refs/heads/dev-gh-pages' &&
-            github.repository == 'yoriiis/vlitejs' &&
-            github.event_name != 'pull_request'
-        with:
-          name: gh-pages
-          path: dist
+      # - name: Upload GitHub Pages artifacts
+      #   uses: actions/upload-artifact@v1
+      #   if: github.ref == 'refs/heads/dev-gh-pages' &&
+      #       github.repository == 'yoriiis/vlitejs' &&
+      #       github.event_name != 'pull_request'
+      #   with:
+      #     name: gh-pages
+      #     path: dist
 
   # deploy-gh-pages:
   #   runs-on: ubuntu-latest

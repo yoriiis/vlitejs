@@ -40,9 +40,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Create demo
-        run: npm run create:demo
-
       - name: Upload GitHub Pages artifacts
         uses: actions/upload-artifact@v1
         if: github.ref == 'refs/heads/dev-gh-pages' &&

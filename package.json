@@ -4,7 +4,6 @@
 	"author": "Yoriiis aka Joris DANIEL",
 	"scripts": {
 		"build": "rm -rf ./dist/ && webpack --mode=production",
-		"create:demo": "mkdir demo",
 		"start": "rm -rf ./dist/ && webpack --mode=development",
 		"test:eslint": "eslint ./src --ignore-pattern dist",
 		"test:eslint:fix": "eslint ./src --ignore-pattern dist --fix",

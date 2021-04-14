@@ -17,6 +17,7 @@ body {
 
 	&-title {
 		margin-bottom: 20px;
+
 		a {
 			display: block;
 			max-width: 180px;
@@ -53,10 +54,17 @@ body {
 		width: 25%;
 	}
 
+	&-listItemName {
+		font-size: 16px;
+		display: block;
+		margin-top: 8px;
+		color: var(--vlite-colorMain);
+		transition: color var(--vlite-transition);
+	}
+
 	&-listItemButton {
 		background: none;
 		border: none;
-		padding: 0;
 		width: 100%;
 		height: 100%;
 		cursor: pointer;
@@ -67,6 +75,13 @@ body {
 		transition: background-color var(--vlite-transition);
 		padding: 10px 5px 5px 5px;
 		border-radius: 3px 3px 0 0;
+
+		svg {
+			width: 30px;
+			height: 30px;
+			fill: var(--vlite-colorMain);
+			transition: fill var(--vlite-transition);
+		}
 
 		&.active {
 			background-color: var(--vlite-colorMain);
@@ -87,21 +102,6 @@ body {
 		* {
 			pointer-events: none;
 		}
-
-		svg {
-			width: 30px;
-			height: 30px;
-			fill: var(--vlite-colorMain);
-			transition: fill var(--vlite-transition);
-		}
-	}
-
-	&-listItemName {
-		font-size: 16px;
-		display: block;
-		margin-top: 8px;
-		color: var(--vlite-colorMain);
-		transition: color var(--vlite-transition);
 	}
 }
 
@@ -139,7 +139,4 @@ body {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
-}
-
-@media screen and (min-width: 750px) {
 }

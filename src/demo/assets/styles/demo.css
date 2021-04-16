@@ -73,33 +73,6 @@ body {
 		transition: color var(--transition);
 	}
 
-	&-listItemButton,
-	&-listItemLink {
-		padding: 10px 5px 5px 5px;
-		border-radius: 3px 3px 0 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		outline: none;
-		width: 100%;
-		height: 100%;
-
-		&:focus-visible {
-			outline: 2px dashed var(--colorPrimary);
-		}
-
-		&:hover svg {
-			transform: translateY(-3px);
-		}
-
-		svg {
-			width: 30px;
-			height: 30px;
-			transition: transform var(--transition);
-		}
-	}
-
 	&-listItemButton {
 		background: none;
 		border: none;
@@ -127,6 +100,33 @@ body {
 
 		.nav-listItemName {
 			color: #1c2128;
+		}
+	}
+
+	&-listItemButton,
+	&-listItemLink {
+		padding: 10px 5px 5px 5px;
+		border-radius: 3px 3px 0 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		outline: none;
+		width: 100%;
+		height: 100%;
+
+		&:focus-visible {
+			outline: 2px dashed var(--colorPrimary);
+		}
+
+		svg {
+			width: 30px;
+			height: 30px;
+			transition: transform var(--transition);
+		}
+
+		&:hover svg {
+			transform: translateY(-3px);
 		}
 	}
 }
@@ -193,15 +193,8 @@ body {
 			width: 100%;
 		}
 
-		&-listItemButton,
-		&-listItemLink {
-			&:hover svg {
-				transform: translateX(-3px);
-			}
-		}
-
 		&-listItemButton {
-			border-radius: 3px 0px 0 3px;
+			border-radius: 3px 0 0 3px;
 			padding: 10px;
 
 			&.active {
@@ -212,6 +205,13 @@ body {
 
 		&-listItemLink {
 			padding: 10px;
+		}
+
+		&-listItemButton,
+		&-listItemLink {
+			&:hover svg {
+				transform: translateX(-3px);
+			}
 		}
 	}
 }

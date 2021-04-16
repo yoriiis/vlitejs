@@ -1,6 +1,8 @@
 :root {
-	--vlite-transition: 0.25s ease;
-	--vlite-colorMain: #ff7f15;
+	--transition: 0.25s ease;
+	--colorPrimary: #ff7f15;
+	--colorSecondary: #1c2128;
+	--colorTertiary: #969696;
 }
 
 html,
@@ -8,15 +10,23 @@ body {
 	margin: 0;
 	font-family: -apple-system, blinkmacsystemfont, segoe UI, Helvetica, Arial, sans-serif,
 		Apple Color Emoji, Segoe UI Emoji;
+	background-color: rgba(255 127 21 / 2%);
+}
+
+#app {
+	height: calc(100vh - 70px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
 }
 
 .header {
-	padding: 0 15px;
-	margin-bottom: 20px;
-	padding-top: 30px;
+	padding: 0 20px;
+	margin-bottom: 30px;
 
 	&-title {
-		margin-bottom: 20px;
+		margin-bottom: 30px;
 
 		a {
 			display: block;
@@ -29,6 +39,7 @@ body {
 		font-size: 16px;
 		line-height: 24px;
 		text-align: center;
+		color: var(--colorSecondary);
 	}
 }
 
@@ -55,52 +66,67 @@ body {
 	}
 
 	&-listItemName {
-		font-size: 16px;
+		font-size: 14px;
 		display: block;
-		margin-top: 8px;
-		color: var(--vlite-colorMain);
-		transition: color var(--vlite-transition);
+		margin-top: 6px;
+		color: var(--colorPrimary);
+		transition: color var(--transition);
+	}
+
+	&-listItemButton,
+	&-listItemLink {
+		padding: 10px 5px 5px 5px;
+		border-radius: 3px 3px 0 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		outline: none;
+		width: 100%;
+		height: 100%;
+
+		&:focus-visible {
+			outline: 2px dashed var(--colorPrimary);
+		}
+
+		&:hover svg {
+			transform: translateY(-3px);
+		}
+
+		svg {
+			width: 30px;
+			height: 30px;
+			transition: transform var(--transition);
+		}
 	}
 
 	&-listItemButton {
 		background: none;
 		border: none;
-		width: 100%;
-		height: 100%;
 		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-direction: column;
-		transition: background-color var(--vlite-transition);
-		padding: 10px 5px 5px 5px;
-		border-radius: 3px 3px 0 0;
 
 		svg {
-			width: 30px;
-			height: 30px;
-			fill: var(--vlite-colorMain);
-			transition: fill var(--vlite-transition);
+			fill: var(--colorPrimary);
 		}
 
 		&.active {
-			background-color: var(--vlite-colorMain);
-
-			.nav-listItemName {
-				color: #fff;
-			}
-
-			svg {
-				fill: #fff;
-			}
-		}
-
-		&:focus {
-			outline: none;
+			border-top: 3px solid var(--colorPrimary);
 		}
 
 		* {
 			pointer-events: none;
+		}
+	}
+
+	&-listItemLink {
+		text-decoration: none;
+
+		svg {
+			fill: #1c2128;
+		}
+
+		.nav-listItemName {
+			color: #1c2128;
 		}
 	}
 }
@@ -111,10 +137,15 @@ body {
 	margin: 0 auto;
 	padding: 0 15px;
 
+	.v-vlite {
+		border-radius: 8px;
+	}
+
 	&-copyright {
-		font-size: 16px;
-		text-align: center;
-		margin-top: 20px;
+		font-size: 14px;
+		text-align: right;
+		margin-top: 15px;
+		color: var(--colorTertiary);
 
 		a {
 			color: inherit;
@@ -139,4 +170,48 @@ body {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+@media screen and (min-width: 750px) {
+	#app {
+		height: 100vh;
+	}
+
+	.nav {
+		bottom: auto;
+		left: auto;
+		top: 0;
+		right: 0;
+		width: auto;
+		height: auto;
+
+		&-list {
+			flex-direction: column;
+		}
+
+		&-listItem {
+			width: 100%;
+		}
+
+		&-listItemButton,
+		&-listItemLink {
+			&:hover svg {
+				transform: translateX(-3px);
+			}
+		}
+
+		&-listItemButton {
+			border-radius: 3px 0px 0 3px;
+			padding: 10px;
+
+			&.active {
+				border-top: none;
+				border-left: 3px solid var(--colorPrimary);
+			}
+		}
+
+		&-listItemLink {
+			padding: 10px;
+		}
+	}
 }

@@ -12,7 +12,7 @@
 	},
 	"dependencies": {
 		"validate-target": "^2.0.0",
-		"vlitejs": "^3.0.4"
+		"vlitejs": "^4.0.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.13.15",
